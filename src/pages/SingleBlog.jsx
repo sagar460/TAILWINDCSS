@@ -18,7 +18,7 @@ function SingleBlog() {
               <div className="flex -mx-2 mb-4">
                 <div className="w-1/2 px-2">
                   <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">
-                    EDIT
+                    EDIT ME
                   </button>
                 </div>
                 <div className="w-1/2 px-2">
@@ -37,7 +37,6 @@ function SingleBlog() {
                 ante justo. Integer euismod libero id mauris malesuada
                 tincidunt.
               </p>
-
               <div>
                 <span className="font-bold text-gray-700 dark:text-gray-300">
                   Product Description:
@@ -60,5 +59,4 @@ function SingleBlog() {
     </>
   );
 }
-
 export default SingleBlog;

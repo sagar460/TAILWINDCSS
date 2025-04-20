@@ -6,13 +6,19 @@ import axios from "axios";
 function Home() {
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async () => {
-    const response = await axios.get("http://localhost:3000/blog/");
-    setBlogs(response.data.data);
+    try {
+      const response = await axios.get("http://localhost:3000/blog");
+      setBlogs(response.data.data);
+    } catch (err) {
+      console.error("Failed to fetch blogs", err);
+    }
   };
+
   useEffect(() => {
     fetchBlogs();
   }, []);
   console.log(blogs);
+
   return (
     <>
       <Navbar />
