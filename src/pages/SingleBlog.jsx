@@ -74,6 +74,7 @@ function SingleBlog() {
         </div>
       </div>
     </>
+    
   );
 }
 export default SingleBlog;
