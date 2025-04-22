@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Navbar from "../assets/components/Navbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-function CreateBlog() {
+function EditBlog() {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState({
     title: "",
@@ -11,41 +12,32 @@ function CreateBlog() {
     description: "",
     image: "",
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({
       ...data,
-      [name]: name === "image" ? e.target.files[0] : value, //using ternary operator
+      [name]: name === "image" ? e.target.files[0] : value,
     });
   };
-
-  console.log(data);
-  const createBlog = async (e) => {
+  const editBlog = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:3000/blog", data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    if (response.status === 200) {
-      navigate("/");
-    } else {
-      alert("something went wrong");
-    }
-    if (response.status === 200) {
-      navigate("/blog/" + id);
-    } else {
-      alert("something went wrong");
-    }
+    const response = await axios.patch(
+      "http://localhost:3000/blog/" + id,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
   };
   return (
     <>
       <Navbar />
       <div className="mx-14 mt-10 border-2 border-blue-400 rounded-lg">
-        <div className="mt-10 text-center font-bold">Wanna create BLOG?</div>
-        <div className="mt-3 text-center text-4xl font-bold">Create BLOG</div>
-        <form onSubmit={createBlog}>
+        <div className="mt-10 text-center font-bold">Wanna EDIT BLOG?</div>
+        <div className="mt-3 text-center text-4xl font-bold">EDIT BLOG</div>
+        <form onSubmit={editBlog}>
           <div className="p-8">
             <div className="flex gap-4">
               <input
@@ -85,7 +77,7 @@ function CreateBlog() {
 
             <div className="text-center">
               <button className="cursor-pointer rounded-lg bg-blue-700 px-8 py-5 text-sm font-semibold text-white">
-                Create BLOG
+                Edit BLOG
               </button>
             </div>
           </div>
@@ -94,4 +86,4 @@ function CreateBlog() {
     </>
   );
 }
-export default CreateBlog;
+export default EditBlog;

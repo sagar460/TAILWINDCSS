@@ -1,7 +1,7 @@
 import axios from "axios";
 import Navbar from "../assets/components/Navbar";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function SingleBlog() {
   const { id } = useParams();
@@ -37,15 +37,18 @@ function SingleBlog() {
               <div className="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
                 <img
                   className="w-full h-full object-cover"
-                  src={`http://localhost:3000/${blog.image}`}
+                  // src={`http://localhost:3000/${blog.image}`}
+                  src={blog.image}
                   alt="Product Image"
                 />
               </div>
               <div className="flex -mx-2 mb-4">
                 <div className="w-1/2 px-2">
-                  <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">
-                    EDIT ME
-                  </button>
+                  <Link to={`/edit/${id}`}>
+                    <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">
+                      EDIT ME
+                    </button>
+                  </Link>
                 </div>
                 <div className="w-1/2 px-2">
                   <button
@@ -74,7 +77,6 @@ function SingleBlog() {
         </div>
       </div>
     </>
-    
   );
 }
 export default SingleBlog;
