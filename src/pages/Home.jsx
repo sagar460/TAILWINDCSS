@@ -7,7 +7,9 @@ function Home() {
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/blog");
+      const response = await axios.get(
+        "https://mern3-node-y6pb.onrender.com/blog"
+      );
       setBlogs(response.data.data);
     } catch (err) {
       console.error("Failed to fetch blogs", err);
